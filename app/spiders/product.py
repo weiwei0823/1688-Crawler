@@ -5,6 +5,7 @@
 import re
 import json
 
+from bs4 import BeautifulSoup
 from lxml import html
 from app.spiders.spider import get_html
 
@@ -21,6 +22,64 @@ headers = {
     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
 }
 
+
+def extract_type_data(json_data, type):
+    type_dict = {
+        "detail": "@ali/tdmod-od-pc-offer-description",
+        "attribute": "@ali/tdmod-od-pc-attribute-new",
+        "scale": "@ali/tdmod-od-pc-offer-cross",
+        "discount": "@ali/tdmod-od-pc-offer-discount",
+        "priceInfo": "@ali/tdmod-od-pc-offer-price",
+        "service": "@ali/tdmod-od-pc-offer-service",
+        "mainPic": "@ali/tdmod-pc-od-main-pic",
+        "titleInfo": "@ali/tdmod-od-pc-offer-title",
+        "tab": "@ali/tdmod-od-pc-offer-tab",
+        "logistics": "@ali/tdmod-od-pc-offer-logistics",
+        "orderInfo": "@ali/tdmod-pc-od-dsc-order",
+    }
+    """
+    从JSON数据中提取特定componentType的detailUrl
+    参数:
+        json_data: dict格式的JSON数据
+    返回:
+        detailUrl的值 (字符串)，未找到时返回None
+    """
+    # 遍历所有组件
+    for component_id, component_data in json_data['data'].items():
+        if component_data.get('componentType') == type_dict[type]:
+            return component_data.get('data')
+    return {}
+
+
+def extract_data_with_type(html_content):
+    soup = BeautifulSoup(html_content, 'html.parser')
+    result = []
+
+    # 查找所有元素并按文档顺序处理
+    for element in soup.find_all():
+        if element.name == 'span':
+            # 提取span文本并添加类型标识
+            text = element.get_text(strip=True)
+            if text:  # 确保文本不为空
+                result.append({
+                    "type": "txt",
+                    "content": text
+                })
+        elif element.name == 'img':
+            # 提取img的src并添加类型标识
+            src = element.get('src')
+            if src:
+                # 清理URL：去除转义字符和多余引号
+                clean_pattern = re.compile(r'\\*"')
+                clean_url = clean_pattern.sub('', src)
+                result.append({
+                    "type": "img",
+                    "content": clean_url
+                })
+
+    return result
+
+
 class Product:
     def __filter(self, content):
         content = re.findall("<span>预估生产周期</span>", content)
@@ -32,6 +91,13 @@ class Product:
         return {
             'errcode': 0
         }
+
+    def __extract_data(self, tree):
+        script = tree.xpath('//script[contains(., "window.__INIT_DATA")]/text()')[0]
+
+        base_str = re.findall("window.__INIT_DATA=({[\s\S]*})", script)[0].replace('\"', '"')
+
+        return json.loads(base_str)
 
     # 基本信息 & SKU
     def __extract_base_and_sku(self, tree):
@@ -53,6 +119,11 @@ class Product:
             return filter_result
 
         tree = html.fromstring(content)
+        # 商品描述数据
+        init_data = self.__extract_data(tree)
+        detail_url = extract_type_data(init_data, "detail").get("detailUrl")
+        detail_data = get_html(detail_url, headers)
+        detail_json = extract_data_with_type(detail_data)
 
         product = self.__extract_base_and_sku(tree)
         result = dict()
@@ -62,5 +133,15 @@ class Product:
         result['images'] = self.__extract_images(product)
         result["order"] = product["orderParamModel"]["orderParam"]
         result["sku"] = product["skuModel"]
-        # todo 商品属性 商品描述
+        result["detail"] = detail_json
+        result["attribute"] = extract_type_data(init_data, "attribute")
+        result["scale"] = extract_type_data(init_data, "scale")
+        result["discount"] = extract_type_data(init_data, "discount")
+        result["priceInfo"] = extract_type_data(init_data, "priceInfo")
+        result["service"] = extract_type_data(init_data, "service")
+        result["mainPic"] = extract_type_data(init_data, "mainPic")
+        result["titleInfo"] = extract_type_data(init_data, "titleInfo")
+        result["tab"] = extract_type_data(init_data, "tab")
+        result["logistics"] = extract_type_data(init_data, "logistics")
+        result["orderInfo"] = extract_type_data(init_data, "orderInfo")
         return result
