@@ -15,7 +15,7 @@ from app.app.app import api_request
 from app.spiders.spider import get_html
 import urllib
 
-with open("/Users/个人/电商/1688-Crawler/app/app/header_list.json") as f:
+with open(r"D:\开发代码\1688-Crawler\app\app\header_list.json") as f:
     HEADER_LIST = json.load(f)
 cookie_json = {
     "cookie2": "1d2c4f04eb2278c58a73c37475d3e28a",
@@ -41,7 +41,7 @@ cookie_json2 = {
     "_m_h5_tk_enc": "d657f5f1e2afcbb46069413d2629f606",
     "_user_vitals_session_data_": "{\"user_line_track\":true,\"ul_session_id\":\"jd4xfy9hvvg\",\"last_page_id\":\"shop9i2i178378493.1688.com%2Fzg0pqg88lf\"}"
 }
-_M_H5_TK = "44f80ac6003bdcffd4e7c3cbf76f66f1_1750590463880"
+_M_H5_TK = "88a9db50e0325f9b8139edfd7041c7a6_1750772499089"
 HEADERS = {
     'Cookie': "; ".join([f"{key}={value}" for key, value in cookie_json.items() if isinstance(value, str)]),
     **random.choice(HEADER_LIST)
@@ -70,7 +70,7 @@ def get_sign_params(_m_h5_tk: str, data: str, t: int = 0) -> Dict[str, Any]:
     if t == 0:
         t = get_milliseconds_timestamp()
     pre_sign_str = f'{_m_h5_tk.split("_")[0]}&{t}&{APP_KEY}&' + data
-    sign_js_path = '/Users/个人/电商/1688-Crawler/app/app/sign.js'
+    sign_js_path = r'D:\开发代码\1688-Crawler\app\app\sign.js'
     sign = execjs.compile(open(sign_js_path).read()).call('sign', pre_sign_str)
     return {
         "sign": sign,
@@ -237,25 +237,24 @@ class Products:
         }
         temp_headers2 = {
             "Host": "h5api.m.1688.com",
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:139.0) Gecko/20100101 Firefox/139.0",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0",
             "Accept": "application/json",
             "Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
-            "Accept-Encoding": "gzip, deflate, br, zstd",
+            "Accept-Encoding": "gzip, deflate, br",
             "Content-type": "application/x-www-form-urlencoded",
-            "Content-Length": "424",
-            "Origin": "https://shop9i2i178378493.1688.com",
+            "Content-Length": "421",
+            "Origin": "https://shop5034f5f173m45.1688.com",
             "Connection": "keep-alive",
-            "Referer": "https://shop9i2i178378493.1688.com/",
-            "Cookie": "taklid=148b26b393df4548bc8ac69344b41e00; tfstk=gq2sY3Y8lree5vMvcfjed096ZwH4GMWrXniYqopwDAHtknaLDhEZM5kpJcmDWE3v62FI008vkoQgl-gLDG4NjAUXGzaS0xPZ7mFQSuhalojiDqUYlqPNYTrgjxDAz-6PUlDszcL0CxL4vAmqnhvAfTrgjHK6kgPdUnTeGdGtkrhTvXnrJIpv6rHpJm3pBmptDeII-2ntXd3xp2nrXcpYkxIQv2mtHqUx6MZpER9sYGg3fGPP0OfPDsRqJKpYdcGKTl3TflIqffa_X2i3JJ6t14EtRK_s_H-sJ0wdoFu0dkeTMzQe_VFScuPbPTpmx5U_pjwFmTqIC0wiQW76e4F7X7obngdjloEuE7Sr9LuWl9AXAbvxACjCAIA0Qqln9jn4B3ltxD7VAMOzmfnnADjCAIXE6DmUdMsBa8C..; lid=june0810; ali_apache_track=c_mid=b2b-47684608|c_lid=june0810|c_ms=1; keywordsHistory=111%3B%E6%94%B6%E7%BA%B3%E5%8C%85%3B%E6%97%85%E8%A1%8C%E4%BE%BF%E6%90%BA%E5%BC%8F%E6%94%B6%E7%BA%B3%E5%8C%85%3B%E5%8C%85%3B%E6%9D%AF%3B%E6%B0%B4%E6%9E%BA%3B%E6%B0%B4%3B%E6%B0%B4%E6%9D%AF%3B%E4%BF%9D%E6%B8%A9%E6%B0%B4%E6%9D%AF%3B%E6%94%B6%E7%BA%B3%E5%8C%851111; leftMenuModeTip=shown; leftMenuLastMode=COLLAPSE; plugin_home_downLoad_cookie=%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6; cookie2=1d2c4f04eb2278c58a73c37475d3e28a; t=d9653040a48983bb7bfb07c2e57083ec; _tb_token_=737e3aeb93be1; uc4=nk4=0%40C%2FnHPkOe8zn1YHj4FgvfhpMzYg%3D%3D&id4=0%40VXwkFNhR7JjHXVOh4fxFixvWNw%3D%3D; __cn_logon__=true; sgcookie=E100QLt%2Bs7mVSmGinzBtxfhm2edHtuw5ydioU18CAxfn5FzAyKCdDn%2Bmp2WzGl09siPZai752AKe%2F1sj6FISgDPepar6geLTg1SrNF23ayBLoIEOeh14fkXym8Rl79alAw86; ali_apache_tracktmp=c_w_signed=Y; __mwb_logon_id__=june0810; mwb=ng; _samesite_flag_=true; tracknick=; isg=BMrKphMallKiZhQFxR3IDJ4MGLZsu04VEiLgg1QDz520B2rBPEmuJd18F_Pb7Mat; cna=bi8zH7MGrnICAXjyE4zcfbSI; _csrf_token=1750557242665; xlly_s=1; cookie1=AnJ%2FiNIXk84XzL2WP%2BWw9phHd6yTswcxwOtWv0ZbgXE%3D; cookie17=Vyu4b0k2TK0%3D; sg=084; csg=21ba142c; unb=47684608; _nk_=june0810; __cn_logon_id__=june0810; last_mid=b2b-47684608; __last_loginid__=b2b-47684608; __last_memberid__=b2b-47684608; _m_h5_tk=44f80ac6003bdcffd4e7c3cbf76f66f1_1750590463880; _m_h5_tk_enc=d657f5f1e2afcbb46069413d2629f606; _user_vitals_session_data_={\"user_line_track\":true,\"ul_session_id\":\"jd4xfy9hvvg\",\"last_page_id\":\"shop9i2i178378493.1688.com%2Fzg0pqg88lf\"}",
+            "Referer": "https://shop5034f5f173m45.1688.com/",
+            "Cookie": "cbu_mmid=7E3C55520E991B9B66A2ADA035045F9B7E7D133715B5C316DBB7DC21C5138C2A09F848C1F03189F222CD52D098667A991427C9AEF3E2395A1C5A8B9F38227BD5; ta_info=AFD8AC7EC60385DDF892BF50F5A485070F0E32C74BC576CA2C07BEDE66C882320929319BD16C3BD3E3A5B0429ECDB8228372814B677667621427C9AEF3E2395A41883B66E38082263AEDEA75593C1708B35AE744130682C9A298DB3B1D55A5B0B32C31388099E1D133B752B90CCD8BD49DA76459D73E00E7FA317F1E18287F750FFD96611F37DC01; _m_h5_tk=88a9db50e0325f9b8139edfd7041c7a6_1750772499089; _m_h5_tk_enc=01518139374262a2f4098e60c3bee866; cna=S3DhIOMqjwUBASQOA2BeCoUG; isg=BFpa_FEw5g8J1GqjFg--2ri4qAB8i95lCKigCmTTcO241_sRTB00dZsspyPLHFb9; tfstk=gpri0DDkaPu_yOfKJki1zs2UEY78fcijESKxMmhV8XlBXSntDHyE3Yzv7tgwTXPKUFuq7xJeLXVj6VnZDmA0wXGTkt6sutVThn34DjEDCkVkDhC15--m2m5RwgI8CRnj0_FQ9AReCxHkuxRx7pREDx4obId4CRiXd_CR2ge6nPjiYmo4gM8EFX8wQFPqY2kjThk2bxRFKXGEQxuwbBRE3YAq3SoVKJlI3ml4gVW3LFQp0bq4Ak5dQMvA58n4xA0iaJ0W03D62VlrjX-qdkDGbbyZtn-xZS_OOJ2Os3wKfPPoe5Iej72azSzzdsxo_ze7eo0B3nuL85Zn-yIytvaUBrr_sKxqClE-obgh3ngxYu3zo5CB0fUuLW08vBK-Y8znxglv8UrxEnMFHkYXJVkIKbduD3YPcKjek9XHPNgZdAC8D9Y25Qt2DeBhKU9j7vMOe; xlly_s=1; cookie2=16b1ad8e4825d89afacaf4a08582eb43; t=ee86223d1517a19866dfcc0b47922006; _tb_token_=ef67e57b1594e; __cn_logon__=true; taklid=c3e60c82f6c94b75942c94ed2d7aa6ac; _csrf_token=1750762375107; leftMenuModeTip=shown; 3pc_partitioned=true; dnk=tb407764704159; uc1=existShop=false&cookie16=V32FPkk%2FxXMk5UvIbNtImtMfJQ%3D%3D&cookie15=UtASsssmOIJ0bQ%3D%3D&pas=0&cookie21=W5iHLLyFe3xm&cookie14=UoYby3NcyBjWbw%3D%3D; tracknick=tb407764704159; lid=tb407764704159; _l_g_=Ug%3D%3D; uc4=nk4=0%40FY4KoNqfWH7h1fuxlKhqBRtBu8XozskrcA%3D%3D&id4=0%40U2gp9rHMdWi31WhuZ80i%2Bs9rOkoxHrbV; unb=2220138943660; lgc=; cookie1=VAEMWgtwkkLS4HdRltRc37SaT1PZ1os2TgQqgfzkBas%3D; login=true; wk_cookie2=1f3761f822d26cc6e8e529259ced4f72; cookie17=UUpjNmLU6%2FkmhcqBwg%3D%3D; _nk_=tb407764704159; sgcookie=E100fHrjcHS%2BC02LHWaEstwpWcVG%2FBsseGUCIqIDObbwvbXY7GhxoF%2BBRuuGom97%2B5PDjn3U3keYfEmkFTQodLAfiFPWftqRq4ad%2FDETe33zkq8%3D; cancelledSubSites=empty; sg=90c; csg=fff67eeb; sn=; wk_unb=UUpjNmLU6%2FkmhcqBwg%3D%3D; __cn_logon_id__=tb407764704159; ali_apache_track=c_mid=b2b-22201389436609692f|c_lid=tb407764704159|c_ms=1; ali_apache_tracktmp=c_w_signed=Y; last_mid=b2b-22201389436609692f; _user_vitals_session_data_={\"user_line_track\":true,\"ul_session_id\":\"7wjba3sahvr\",\"last_page_id\":\"shop5034f5f173m45.1688.com%2Ff7flnzogk1\"}",
             "Sec-Fetch-Dest": "empty",
             "Sec-Fetch-Mode": "cors",
             "Sec-Fetch-Site": "same-site",
-            "Pragma": "no-cache",
-            "Cache-Control": "no-cache",
             "TE": "trailers"
         }
         print(temp_headers)
-        product_list_content = requests.post(product_list_url, data=urllib.parse.quote(product_list_data), headers=temp_headers2)
+        product_list_content = requests.post(product_list_url, data=product_list_data,
+                                             headers=temp_headers2)
         print(product_list_content.text)
 
 
