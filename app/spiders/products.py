@@ -14,6 +14,7 @@ from typing import Dict, Any, Optional
 from app.app.app import api_request
 from app.spiders.spider import get_html
 import urllib
+from urllib.parse import urlparse
 
 with open(r"D:\开发代码\1688-Crawler\app\app\header_list.json") as f:
     HEADER_LIST = json.load(f)
@@ -235,22 +236,42 @@ class Products:
                 "; ".join([f"{key}={value}" for key, value in cookie_json2.items() if isinstance(value, str)])),
             **random.choice(HEADER_LIST)
         }
+        parsed_url = urlparse(url)
+        # 构建基础URL (scheme + netloc)
+        origin = f"{parsed_url.scheme}://{parsed_url.netloc}"
+        cookie_ict = {
+            "cbu_mmid": "7E3C55520E991B9B8B42B526CEBFC53FB6E7C0E60C95213F59D482B4CCE147DB09F848C1F03189F222CD52D098667A9903418ACEDC5B1C734E940C8A17EF9E54",
+            "cna": "9XfiIM0kuU4BASQOA2Aug0iy",
+            "isg": "BL-_RRRV66ga7O-xyEn4ShMZTZNJpBNGPfAlW1GMCW61YN7iWXIKl2Z7orCeI-u-",
+            "tfstk": "gV7sXwaEsADsCeTxGhVEReIHJBTVCWzPBjOAZs3ZMFLtv6dD6xHxksLKvCA9DN8N_91A3TjwBFPmcq1fp1uw3shXM989mGJ2QKTfiTs_UzzPs1YDX8yzzsFoOcL96ALv6SppZQVe6U7Gp7TDk8yEYqKgPEXTmOwRH6FB_CM9kCLxvWO2gVLvBnHKvQppkEK9M2pp_IntXKdYO6pHMEpAHEFBJpAvu7hWGl9G15WHh6Lon919dq3AWEx6hdoqlqTJ6hiG6psfcwO6fL-Ai4b5W95A7Nx3SV8cTg6fD9UI5t6G6ZKCuJldwFv62dbTgcvO7M_B7Nemq65BB3TFYk2w0F61qLxTxJXJV_SySaeIyKsOItxlu80MBsClrg87l2L6DgWZzL17ImGBqqdIjWNImmY9ZeblUX27AhdH1HPQOAImEq3qYZPIDcx9tCTzOWMOn",
+            "xlly_s": "1",
+            "__cn_logon__": "false",
+            "taklid": "8471e9b2c1264348944618a739d884d1",
+            "union": '{"amug_biz":"comad","amug_fl_src":"sem_baidu","creative_url":"https%3A%2F%2Fwww.1688.com%2Fzw%2Fhamlet.html%3Fscene%3D6%26cosite%3Dbaidujj_pz%26location%3Dre%26trackid%3D885662561117990122602%26","creative_time":1750929542524}',
+            "ta_info": "810F8857EAA0364D6A55EA8951423B3990E054CD6431AA194F1B83B9E7936069199406F1EBC0FC88229D45EBB177D63F14A5CAB8BECF89771490FA03749186CB152A760AA86ACF60603F70A677F9F1815C41F50086C524BE947FD70979E0DE632A19A34DC27F1AE34597474615EEC31F8A0CFB78BA1469E5316E07CFCB72C1532E6B527467FD0BB74511D4DA7DCDC699A45B81D147428BA14EA682FF0CED73EF3E07A6463BD2F4ED",
+            "_m_h5_tk": "09f744fde853933ae05fa370dbc47e0e_1752121589006",
+            "_m_h5_tk_enc": "d50e3fbb40b2d7cd974d7e37db678444",
+            "cookie2": "157ea9ba1027c8df6d53adc7a93980a2",
+            "t": "c1b2151c8d6f8cc637e534ce41bbd4ad",
+            "_tb_token_": "3038b763dbe4e",
+            "_csrf_token": "1752040121509",
+            "leftMenuModeTip": "shown",
+            "_user_vitals_session_data_": '{"user_line_track":true,"ul_session_id":"eaz7sse29j4","last_page_id":"ziqier1030718789.1688.com%2F99u6f2hv7a7"}'
+        }
         temp_headers2 = {
             "Host": "h5api.m.1688.com",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0",
             "Accept": "application/json",
             "Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
-            "Accept-Encoding": "gzip, deflate, br",
+            "Accept-Encoding": "gzip, deflate, br, zstd",
             "Content-type": "application/x-www-form-urlencoded",
             "Content-Length": "421",
-            "Origin": "https://shop5034f5f173m45.1688.com",
+            "Origin": origin,
             "Connection": "keep-alive",
-            "Referer": "https://shop5034f5f173m45.1688.com/",
-            "Cookie": "cbu_mmid=7E3C55520E991B9B66A2ADA035045F9B7E7D133715B5C316DBB7DC21C5138C2A09F848C1F03189F222CD52D098667A991427C9AEF3E2395A1C5A8B9F38227BD5; ta_info=AFD8AC7EC60385DDF892BF50F5A485070F0E32C74BC576CA2C07BEDE66C882320929319BD16C3BD3E3A5B0429ECDB8228372814B677667621427C9AEF3E2395A41883B66E38082263AEDEA75593C1708B35AE744130682C9A298DB3B1D55A5B0B32C31388099E1D133B752B90CCD8BD49DA76459D73E00E7FA317F1E18287F750FFD96611F37DC01; _m_h5_tk=88a9db50e0325f9b8139edfd7041c7a6_1750772499089; _m_h5_tk_enc=01518139374262a2f4098e60c3bee866; cna=S3DhIOMqjwUBASQOA2BeCoUG; isg=BFpa_FEw5g8J1GqjFg--2ri4qAB8i95lCKigCmTTcO241_sRTB00dZsspyPLHFb9; tfstk=gpri0DDkaPu_yOfKJki1zs2UEY78fcijESKxMmhV8XlBXSntDHyE3Yzv7tgwTXPKUFuq7xJeLXVj6VnZDmA0wXGTkt6sutVThn34DjEDCkVkDhC15--m2m5RwgI8CRnj0_FQ9AReCxHkuxRx7pREDx4obId4CRiXd_CR2ge6nPjiYmo4gM8EFX8wQFPqY2kjThk2bxRFKXGEQxuwbBRE3YAq3SoVKJlI3ml4gVW3LFQp0bq4Ak5dQMvA58n4xA0iaJ0W03D62VlrjX-qdkDGbbyZtn-xZS_OOJ2Os3wKfPPoe5Iej72azSzzdsxo_ze7eo0B3nuL85Zn-yIytvaUBrr_sKxqClE-obgh3ngxYu3zo5CB0fUuLW08vBK-Y8znxglv8UrxEnMFHkYXJVkIKbduD3YPcKjek9XHPNgZdAC8D9Y25Qt2DeBhKU9j7vMOe; xlly_s=1; cookie2=16b1ad8e4825d89afacaf4a08582eb43; t=ee86223d1517a19866dfcc0b47922006; _tb_token_=ef67e57b1594e; __cn_logon__=true; taklid=c3e60c82f6c94b75942c94ed2d7aa6ac; _csrf_token=1750762375107; leftMenuModeTip=shown; 3pc_partitioned=true; dnk=tb407764704159; uc1=existShop=false&cookie16=V32FPkk%2FxXMk5UvIbNtImtMfJQ%3D%3D&cookie15=UtASsssmOIJ0bQ%3D%3D&pas=0&cookie21=W5iHLLyFe3xm&cookie14=UoYby3NcyBjWbw%3D%3D; tracknick=tb407764704159; lid=tb407764704159; _l_g_=Ug%3D%3D; uc4=nk4=0%40FY4KoNqfWH7h1fuxlKhqBRtBu8XozskrcA%3D%3D&id4=0%40U2gp9rHMdWi31WhuZ80i%2Bs9rOkoxHrbV; unb=2220138943660; lgc=; cookie1=VAEMWgtwkkLS4HdRltRc37SaT1PZ1os2TgQqgfzkBas%3D; login=true; wk_cookie2=1f3761f822d26cc6e8e529259ced4f72; cookie17=UUpjNmLU6%2FkmhcqBwg%3D%3D; _nk_=tb407764704159; sgcookie=E100fHrjcHS%2BC02LHWaEstwpWcVG%2FBsseGUCIqIDObbwvbXY7GhxoF%2BBRuuGom97%2B5PDjn3U3keYfEmkFTQodLAfiFPWftqRq4ad%2FDETe33zkq8%3D; cancelledSubSites=empty; sg=90c; csg=fff67eeb; sn=; wk_unb=UUpjNmLU6%2FkmhcqBwg%3D%3D; __cn_logon_id__=tb407764704159; ali_apache_track=c_mid=b2b-22201389436609692f|c_lid=tb407764704159|c_ms=1; ali_apache_tracktmp=c_w_signed=Y; last_mid=b2b-22201389436609692f; _user_vitals_session_data_={\"user_line_track\":true,\"ul_session_id\":\"7wjba3sahvr\",\"last_page_id\":\"shop5034f5f173m45.1688.com%2Ff7flnzogk1\"}",
-            "Sec-Fetch-Dest": "empty",
-            "Sec-Fetch-Mode": "cors",
-            "Sec-Fetch-Site": "same-site",
-            "TE": "trailers"
+            "Referer": origin,
+            "Cookie": "; ".join([f"{key}={value}" for key, value in cookie_ict.items() if isinstance(value, str)]),
+            "TE": "trailers",
+            **random.choice(HEADER_LIST)
         }
         print(temp_headers)
         product_list_content = requests.post(product_list_url, data=product_list_data,
@@ -265,7 +286,7 @@ if __name__ == '__main__':
     "https://h5api.m.1688.com/h5/mtop.alibaba.alisite.cbu.server.moduleasyncservice/1.0/?jsv=2.7.0&appKey=12574478&t=1750509771737&sign=441d66ec18a1c9955a1ab57c141d5a6b&api=mtop.alibaba.alisite.cbu.server.ModuleAsyncService&v=1.0&type=json&valueType=string&dataType=jsonp&timeout=10000"
     """
     product = Products()
-    product.go("https://shop9i2i178378493.1688.com/page/index.htm?spm=a2615.7691456.wp_pc_common_topnav.0")
+    product.go("https://ziqier1030718789.1688.com/page/creditdetail.htm?spm=a261y.7663282.shopNavigation.1.113571a5XwLNC6")
     # sign = get_sign_params(
     #     "0f730fa6a97cdc721c1905ea768db579_1750566243635",
     #     '{"componentKey":"Wp_pc_common_offerlist","params":"{\\"memberId\\":\\"b2b-22014039174159cbd8\\",\\"appdata\\":{\\"sortType\\":\\"wangpu_score\\",\\"sellerRecommendFilter\\":false,\\"mixFilter\\":false,\\"tradenumFilter\\":false,\\"quantityBegin\\":null,\\"pageNum\\":1,\\"count\\":30}}"}',
