@@ -16,7 +16,7 @@ from app.spiders.spider import get_html
 import urllib
 from urllib.parse import urlparse
 
-with open(r"D:\开发代码\1688-Crawler\app\app\header_list.json") as f:
+with open("/Users/个人/电商/1688-Crawler/app/app/header_list.json") as f:
     HEADER_LIST = json.load(f)
 cookie_json = {
     "cookie2": "1d2c4f04eb2278c58a73c37475d3e28a",
@@ -71,7 +71,7 @@ def get_sign_params(_m_h5_tk: str, data: str, t: int = 0) -> Dict[str, Any]:
     if t == 0:
         t = get_milliseconds_timestamp()
     pre_sign_str = f'{_m_h5_tk.split("_")[0]}&{t}&{APP_KEY}&' + data
-    sign_js_path = r'D:\开发代码\1688-Crawler\app\app\sign.js'
+    sign_js_path = "/Users/个人/电商/1688-Crawler/app/app/sign.js"
     sign = execjs.compile(open(sign_js_path).read()).call('sign', pre_sign_str)
     return {
         "sign": sign,
@@ -200,7 +200,7 @@ class Products:
             })
         return address
 
-    def go(self, url):
+    def get_product_info(self, url):
         content = get_html(url, HEADERS)
         memberId = ""
         # 定义匹配memberId的正则表达式模式
@@ -258,7 +258,7 @@ class Products:
             "leftMenuModeTip": "shown",
             "_user_vitals_session_data_": '{"user_line_track":true,"ul_session_id":"eaz7sse29j4","last_page_id":"ziqier1030718789.1688.com%2F99u6f2hv7a7"}'
         }
-        temp_headers2 = {
+        req_header = {
             "Host": "h5api.m.1688.com",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0",
             "Accept": "application/json",
@@ -275,7 +275,7 @@ class Products:
         }
         print(temp_headers)
         product_list_content = requests.post(product_list_url, data=product_list_data,
-                                             headers=temp_headers2)
+                                             headers=req_header)
         print(product_list_content.text)
 
 
@@ -286,7 +286,8 @@ if __name__ == '__main__':
     "https://h5api.m.1688.com/h5/mtop.alibaba.alisite.cbu.server.moduleasyncservice/1.0/?jsv=2.7.0&appKey=12574478&t=1750509771737&sign=441d66ec18a1c9955a1ab57c141d5a6b&api=mtop.alibaba.alisite.cbu.server.ModuleAsyncService&v=1.0&type=json&valueType=string&dataType=jsonp&timeout=10000"
     """
     product = Products()
-    product.go("https://ziqier1030718789.1688.com/page/creditdetail.htm?spm=a261y.7663282.shopNavigation.1.113571a5XwLNC6")
+    product.get_product_info(
+        "https://ziqier1030718789.1688.com/page/creditdetail.htm?spm=a261y.7663282.shopNavigation.1.113571a5XwLNC6")
     # sign = get_sign_params(
     #     "0f730fa6a97cdc721c1905ea768db579_1750566243635",
     #     '{"componentKey":"Wp_pc_common_offerlist","params":"{\\"memberId\\":\\"b2b-22014039174159cbd8\\",\\"appdata\\":{\\"sortType\\":\\"wangpu_score\\",\\"sellerRecommendFilter\\":false,\\"mixFilter\\":false,\\"tradenumFilter\\":false,\\"quantityBegin\\":null,\\"pageNum\\":1,\\"count\\":30}}"}',

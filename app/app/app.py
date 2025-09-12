@@ -21,7 +21,7 @@ import asyncio
 """
 
 APP_KEY = '12574478'
-with open(r"D:\开发代码\1688-Crawler\app\app\header_list.json") as f:
+with open("/Users/个人/电商/1688-Crawler/app/app/header_list.json") as f:
     HEADER_LIST = json.load(f)
 HEADERS = {
     'cookie': '',
