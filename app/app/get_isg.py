@@ -4,7 +4,7 @@ import execjs
 def get_isg():
     isg_value = ""
     # 读取 JavaScript 文件
-    with open(r'/Users/个人/电商/1688-Crawler/app/app/run_isg.js', 'r', encoding='utf-8') as f:
+    with open(r'/Users/个人/电商/1688-Crawler/app/app/isg/run_isg.js', 'r', encoding='utf-8') as f:
         js_code = f.read()
 
     # 创建 JavaScript 执行环境

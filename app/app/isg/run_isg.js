@@ -12,9 +12,9 @@ function getIsg(type, originUrl) {
     const {window} = dom;
     let scriptContent = "";
     if (type === "isg_2") {
-        scriptContent = fs.readFileSync("/Users/个人/电商/1688-Crawler/app/app/isg_2.js", {encoding: "utf-8"})
+        scriptContent = fs.readFileSync("/Users/个人/电商/1688-Crawler/app/app/isg/isg_2.js", {encoding: "utf-8"})
     } else if (type === "sufei_data") {
-        scriptContent = fs.readFileSync("/Users/个人/电商/1688-Crawler/app/app/sufei_data.js", {encoding: "utf-8"})
+        scriptContent = fs.readFileSync("/Users/个人/电商/1688-Crawler/app/app/isg/sufei_data.js", {encoding: "utf-8"})
     }
     // 2. 创建 vm2 实例，注入 jsdom 的 window 和 document
     const sandbox = {
