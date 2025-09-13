@@ -48,6 +48,7 @@ function getIsg(type, originUrl) {
         const cookieData = vm.run(scriptCode);
         const result_isg_str = vm.sandbox.document.cookie;
         result_isg = result_isg_str?.split("=")[1];
+        console.log("isg=" + result_isg);
     } catch (err) {
         console.error('执行脚本时出错:', err);
     }

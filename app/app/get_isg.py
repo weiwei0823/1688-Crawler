@@ -15,7 +15,11 @@ def get_isg():
     try:
         # 方法1：直接调用 JavaScript 函数获取 Cookie
         isg_value = ctx.eval('getIsg("sufei_data")')
-        print("isg_value====" + isg_value)
     except Exception as e:
         print("执行出错:", e)
     return isg_value
+
+
+if __name__ == '__main__':
+    res = get_isg()
+    print(res)
