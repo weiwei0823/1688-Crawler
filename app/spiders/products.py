@@ -12,6 +12,7 @@ import requests
 from lxml import html
 from typing import Dict, Any, Optional
 from app.app.app import api_request
+from app.app.get_isg import get_isg
 from app.spiders.spider import get_html
 import urllib
 from urllib.parse import urlparse
@@ -242,7 +243,7 @@ class Products:
         cookie_ict = {
             "cbu_mmid": "7E3C55520E991B9B8B42B526CEBFC53FB6E7C0E60C95213F59D482B4CCE147DB09F848C1F03189F222CD52D098667A9903418ACEDC5B1C734E940C8A17EF9E54",
             "cna": "9XfiIM0kuU4BASQOA2Aug0iy",
-            "isg": "BL-_RRRV66ga7O-xyEn4ShMZTZNJpBNGPfAlW1GMCW61YN7iWXIKl2Z7orCeI-u-",
+            "isg": get_isg(),
             "tfstk": "gV7sXwaEsADsCeTxGhVEReIHJBTVCWzPBjOAZs3ZMFLtv6dD6xHxksLKvCA9DN8N_91A3TjwBFPmcq1fp1uw3shXM989mGJ2QKTfiTs_UzzPs1YDX8yzzsFoOcL96ALv6SppZQVe6U7Gp7TDk8yEYqKgPEXTmOwRH6FB_CM9kCLxvWO2gVLvBnHKvQppkEK9M2pp_IntXKdYO6pHMEpAHEFBJpAvu7hWGl9G15WHh6Lon919dq3AWEx6hdoqlqTJ6hiG6psfcwO6fL-Ai4b5W95A7Nx3SV8cTg6fD9UI5t6G6ZKCuJldwFv62dbTgcvO7M_B7Nemq65BB3TFYk2w0F61qLxTxJXJV_SySaeIyKsOItxlu80MBsClrg87l2L6DgWZzL17ImGBqqdIjWNImmY9ZeblUX27AhdH1HPQOAImEq3qYZPIDcx9tCTzOWMOn",
             "xlly_s": "1",
             "__cn_logon__": "false",
