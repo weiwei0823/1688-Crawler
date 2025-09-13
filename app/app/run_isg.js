@@ -3,7 +3,7 @@ const {JSDOM} = require('jsdom');
 const fs = require('fs');
 
 
-async function getIsg(type, originUrl) {
+function getIsg(type, originUrl) {
     let result_isg = "";
     // 1. 创建 jsdom 实例
     const dom = new JSDOM(`<!DOCTYPE html><html><body></body></html>`, {
@@ -46,19 +46,18 @@ async function getIsg(type, originUrl) {
     // 4. 在沙盒中运行脚本并获取其返回值
     try {
         const cookieData = vm.run(scriptCode);
-        result_isg = vm.sandbox.document.cookie;
-        console.log(vm.sandbox.document.cookie, "---" + type);
-        // console.log('从沙盒中获取的 Cookie 数据:', cookieData);
+        const result_isg_str = vm.sandbox.document.cookie;
+        result_isg = result_isg_str?.split("=")[1];
     } catch (err) {
         console.error('执行脚本时出错:', err);
     }
-    return Promise.resolve(result_isg);
+    return result_isg;
 }
 
-Promise.all([
-    getIsg("isg_2"),
-    getIsg("sufei_data"),
-]).then(resList => {
-    console.log("complete!!!")
-})
+// Promise.all([
+//     getIsg("isg_2"),
+//     getIsg("sufei_data"),
+// ]).then(resList => {
+//     console.log("complete!!!")
+// })
 
