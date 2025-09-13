@@ -8,13 +8,14 @@ const dom = new JSDOM(`<!DOCTYPE html><html><body></body></html>`, {
 });
 const {window} = dom;
 
-scriptContent = fs.readFileSync("/Users/个人/电商/1688-Crawler/app/app/tfstk/awsc.js", {encoding: "utf-8"})
+scriptContent = fs.readFileSync("/Users/个人/电商/1688-Crawler/app/app/tfstk/baxia-entry.js", {encoding: "utf-8"})
 // 2. 创建 vm2 实例，注入 jsdom 的 window 和 document
 const vm = new VM({
     sandbox: {
         window: window,
         document: window.document,
         navigator: window.navigator,
+        Image: window.Image,
         location: window.location,
         setTimeout: window.setTimeout,
         console: console // 可选，允许沙盒内使用 console
