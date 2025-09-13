@@ -8,7 +8,7 @@ const dom = new JSDOM(`<!DOCTYPE html><html><body></body></html>`, {
 });
 const {window} = dom;
 
-scriptContent = fs.readFileSync("/Users/个人/电商/1688_spider/cookie/tfstk/awsc.js", {encoding: "utf-8"})
+scriptContent = fs.readFileSync("/Users/个人/电商/1688-Crawler/app/app/tfstk/awsc.js", {encoding: "utf-8"})
 // 2. 创建 vm2 实例，注入 jsdom 的 window 和 document
 const vm = new VM({
     sandbox: {
