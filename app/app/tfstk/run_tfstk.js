@@ -11,10 +11,11 @@ function getTfstk(type, originUrl) {
     });
     const {window} = dom;
     let scriptContent = "";
-    scriptContent = fs.readFileSync("/Users/个人/电商/1688-Crawler/app/app/tfstk/baxia-entry.js", {encoding: "utf-8"})
+    scriptContent = fs.readFileSync("/Users/个人/电商/1688-Crawler/app/app/tfstk/et_f.js", {encoding: "utf-8"})
     // 2. 创建 vm2 实例，注入 jsdom 的 window 和 document
     const sandbox = {
         window: window,
+        self: window,
         Object: window.Object,
         Array: window.Array,
         Function: window.Function,
@@ -33,6 +34,7 @@ function getTfstk(type, originUrl) {
         canvas: window.canvas,
         localStorage: window.localStorage,
         isSecureContext: window.isSecureContext,
+        XMLHttpRequest: window.XMLHttpRequest,
         console: console // 可选，允许沙盒内使用 console
     }
     const vm = new VM({sandbox});
