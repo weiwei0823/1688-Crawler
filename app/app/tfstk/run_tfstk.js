@@ -44,9 +44,11 @@ function getTfstk(type, originUrl) {
     // 4. 在沙盒中运行脚本并获取其返回值
     try {
         const cookieData = vm.run(scriptCode);
-        const result_isg_str = vm.sandbox.document.cookie;
-        result_isg = result_isg_str?.split("=")[1];
-        console.log("isg=" + result_isg);
+        setTimeout(() => {
+            const result_tfstk_str = vm.sandbox.document.cookie;
+            result_tfstk = result_tfstk_str?.split("=")[1] || "";
+            console.log("tfstk=" + result_tfstk);
+        }, 2000);
     } catch (err) {
         console.error('执行脚本时出错:', err);
     }
