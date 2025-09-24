@@ -62,3 +62,26 @@ function getTfstk(type, originUrl) {
 //     console.log("complete!!!")
 // })
 getTfstk()
+
+
+
+// var db;
+// var request=indexedDB.open("1688_1", 2);
+// request.onsuccess=function(event){
+//     db=event.target.result;
+//     var transaction=db.transaction(db.objectStoreNames,'readonly');
+//     var objectStore=transaction.objectStore('tfstk');
+//     var request=objectStore.getAll();
+//     request.onsuccess=function(event){
+//         var data=event.target.result;//将数据保存到本地文件
+//         var dataString = JSON.stringify(data);
+//         var blob = new Blob([dataString], {type: 'application/json'});
+//         var url = URL.createObjectURL(blob);
+//
+//         var a = document.createElement('a');
+//         a.href = url;
+//         a.download = 'data1.json';
+//         document.body.appendChild(a);
+//         a.click();
+//     };
+// };

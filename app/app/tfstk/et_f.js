@@ -15504,7 +15504,7 @@ let doFun = function (store) {
 
 let db_transaction;
 let db_store;
-const db_request = window.indexedDB.open("1688_1", 2);
+const db_request = window.indexedDB.open("1688_2", 2);
 db_request.onsuccess = function (res) {
     const db = res.target.result;
     //判断是否存在Users表
@@ -15525,4 +15525,5 @@ db_request.onupgradeneeded = function (res) {
         db.createObjectStore("tfstk", {keyPath: "index", autoIncrement: true});
     }
 }
+
 
