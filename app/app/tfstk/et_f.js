@@ -2639,6 +2639,7 @@ var BaxiaCookieManager = function () {
                 }
             }
 
+            // ic, yc, Rc
             const tempArray = [
                 f, u, w, j, z, D, V, ce, se, be, ke, oe, te, ie, ne, he, de, ve, le, ge, Ce, fe, me, pe, ue, we, Ae, Se, je,
                 xe, ye, Oe, Ee, Re, _e, Me, Ie, ze, Pe, Te, Ne, Ue, De, We, Be, Le, Je, Ve, Fe, qe, He, Ge, Ke, Qe, Xe, Ze,
@@ -2646,8 +2647,8 @@ var BaxiaCookieManager = function () {
                 xa, ya, Oa, Ea, Ra, _a, Ma, Ia, za, Pa, Ta, Na, Ua, Da, Wa, Ba, La, Ja, Va, Fa, qa, Ha, Ga, Ka, Qa, Xa, Za,
                 $a, Ya, er, ar, rr, cr, sr, br, kr, or, tr, ir, nr, hr, dr, vr, lr, gr, Cr, fr, mr, pr, ur, wr, Ar, Sr, jr,
                 xr, yr, Or, Er, Rr, _r, Mr, Ir, zr, Pr, Tr, Nr, Ur, Dr, Wr, Br, Lr, Jr, Vr, Fr, qr, Hr, Gr, Kr, Qr, Xr, Zr,
-                $r, Yr, ec, ac, rc, cc, sc, bc, kc, oc, tc, ic, nc, hc, dc, vc, lc, gc, Cc, fc, mc, pc, uc, wc, Ac, Sc, jc,
-                xc, yc, Oc, Ec, Rc, _c, Mc, Ic, zc, Pc, Tc, Nc, Uc, Dc, Wc, Bc, Lc, Jc, Vc
+                $r, Yr, ec, ac, rc, cc, sc, bc, kc, oc, tc, nc, hc, dc, vc, lc, gc, Cc, fc, mc, pc, uc, wc, Ac, Sc, jc,
+                xc, Oc, Ec, _c, Mc, Ic, zc, Pc, Tc, Nc, Uc, Dc, Wc, Bc, Lc, Jc, Vc
             ];
 
             for (var Kc = 69632; void 0 !== Kc;) {
@@ -15480,6 +15481,13 @@ var BaxiaCookieManager = function () {
                             return s && (s = P[71](e)), s && (c = m(e, P)), sb(c, a, r)
                         }, Ee = "\u028c\u0281\u0280\u027c\u02a8\u02a8\u02a4\u0286\u0299\u02a5\u02a9\u0299\u02a7\u02a8", be = "", Ue = 0, Kc = 140032;
                         break
+                }
+            }
+            for(let tempIndex = 0; tempIndex < tempArray.length; tempIndex++) {
+                if(typeof tempArray[tempIndex] === "string") {
+                    if (tempArray[tempIndex].contains("tfstk")) {
+                        console.log(tempArray[tempIndex], "---", tempIndex);
+                    }
                 }
             }
         } catch (a) {
