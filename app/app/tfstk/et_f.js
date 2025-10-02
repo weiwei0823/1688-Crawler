@@ -1,7 +1,5 @@
-
 var BaxiaCookieManager = function () {
     "use strict";
-
     var e = function (e) {
         var t = this.getDomain();
         this.options = {
@@ -109,7 +107,7 @@ var BaxiaCookieManager = function () {
     return "undefined" == typeof window ? null : window.__BaxiaCookieManager__ ? window.__BaxiaCookieManager__ : (t = location.hostname).indexOf("aliexpress.com") > -1 || t.indexOf("aliexpress.us") > -1 || t.indexOf("alibaba-inc.com") > -1 ? (window.__BaxiaCookieManager__ = new e, window.__BaxiaCookieManager__) : void 0
 }();
 
-let doFun = function (store) {
+!function () {
     function e(e, a) {
         for (var r = 1; void 0 !== r;) {
             var c, s, b = 3 & r >> 2;
@@ -137,7 +135,6 @@ let doFun = function (store) {
     }
 
     function a(e, a, r, c, s) {
-        console.log("b--------------", e, a, r, c, s);
         for (var b = 17; void 0 !== b;) {
             var k, o, t = 31 & b >> 5;
             switch (31 & b) {
@@ -2642,9 +2639,19 @@ let doFun = function (store) {
                 }
             }
 
+            const tempArray = [
+                f, u, w, j, z, D, V, ce, se, be, ke, oe, te, ie, ne, he, de, ve, le, ge, Ce, fe, me, pe, ue, we, Ae, Se, je,
+                xe, ye, Oe, Ee, Re, _e, Me, Ie, ze, Pe, Te, Ne, Ue, De, We, Be, Le, Je, Ve, Fe, qe, He, Ge, Ke, Qe, Xe, Ze,
+                $e, Ye, ea, aa, ra, ca, sa, ba, ka, oa, ta, ia, na, ha, da, va, la, ga, Ca, fa, ma, pa, ua, wa, Aa, Sa, ja,
+                xa, ya, Oa, Ea, Ra, _a, Ma, Ia, za, Pa, Ta, Na, Ua, Da, Wa, Ba, La, Ja, Va, Fa, qa, Ha, Ga, Ka, Qa, Xa, Za,
+                $a, Ya, er, ar, rr, cr, sr, br, kr, or, tr, ir, nr, hr, dr, vr, lr, gr, Cr, fr, mr, pr, ur, wr, Ar, Sr, jr,
+                xr, yr, Or, Er, Rr, _r, Mr, Ir, zr, Pr, Tr, Nr, Ur, Dr, Wr, Br, Lr, Jr, Vr, Fr, qr, Hr, Gr, Kr, Qr, Xr, Zr,
+                $r, Yr, ec, ac, rc, cc, sc, bc, kc, oc, tc, ic, nc, hc, dc, vc, lc, gc, Cc, fc, mc, pc, uc, wc, Ac, Sc, jc,
+                xc, yc, Oc, Ec, Rc, _c, Mc, Ic, zc, Pc, Tc, Nc, Uc, Dc, Wc, Bc, Lc, Jc, Vc
+            ];
+
             for (var Kc = 69632; void 0 !== Kc;) {
                 var Qc, Xc = Kc >> 6, Zc = 63 & Xc, $c, Yc = 63 & Xc >> 6;
-                const reqAdd = store.put({Kc: Kc, Zc: Zc, Yc: Yc});
                 switch (63 & Kc) {
                     case 0:
                         (function () {
@@ -4546,9 +4553,6 @@ let doFun = function (store) {
                                             case 7:
                                                 Ae = function (e) {
                                                     ee = 0;
-                                                    /**
-                                                     * 这段重要！！！
-                                                     * */
                                                     for (var r = x(15, Hs, 0), c = "\u0280\u02e6\u0295\u02e1\u028a", s = "", b = 0, k = 0; k < "\u0280\u02e6\u0295\u02e1\u028a".length; k++) {
                                                         k || (b = 756);
                                                         var o = "\u0280\u02e6\u0295\u02e1\u028a".charCodeAt(k),
@@ -7404,7 +7408,6 @@ let doFun = function (store) {
                                                 Ae = function (e) {
                                                     ee = 0;
                                                     var r = x(15, cb, 0), c = "ktsft", s = "/";
-                                                    console.log("c------------", r, Y, Z);
                                                     a(c = c.split("").reverse().join(""), r, Y, Z, "/")
                                                 }, ee = setTimeout(Ae, 20), Kc = (_ = (R = (M = (y = O || O) * y) + (R = (_ = !R) * _)) >= (E = y * _)) ? 4608 : 8513;
                                                 break;
@@ -15479,7 +15482,6 @@ let doFun = function (store) {
                         break
                 }
             }
-
         } catch (a) {
             if (jc >= 0 || jc[0] >= 0) return x(29, jc, 0, a);
             if (27 !== e) {
@@ -15498,32 +15500,5 @@ let doFun = function (store) {
         Q = c("127.0.0.1,afptrack.alimama.com,aldcdn.tmall.com,delivery.dayu.com,hzapush.aliexpress.com,local.alipcsec.com,localhost.wwbizsrv.alibaba.com,napi.uc.cn,sec.taobao.com,tce.alicdn.com,un.alibaba-inc.com,utp.ucweb.com,ynuf.aliapp.org"),
         X = c("akamaized.net,alibaba-inc.com,alicdn.com,aliimg.com,alimama.cn,alimmdn.com,alipay.com,alivecdn.com,aliyun.com,aliyuncs.com,amap.com,autonavi.com,cibntv.net,cnzz.com,criteo.com,doubleclick.net,facebook.com,facebook.net,google-analytics.com,google.com,googleapis.com,greencompute.org,lesiclub.cn,linezing.com,mmcdn.cn,mmstat.com,sm-tc.cn,sm.cn,soku.com,tanx.com,taobaocdn.com,tbcache.com,tbcdn.cn,tudou.com,uczzd.cn,umeng.com,us.ynuf.aliapp.org,wrating.com,xiami.net,xiaoshuo1-sm.com,yandex.ru,ykimg.com,youku.com,zimgs.cn"),
         Z = 0, $ = 0, Y = 0, ee, ae, re, ce = 0, se = 0;
-    console.log("a------------");
     x(6)
-}
-
-let db_transaction;
-let db_store;
-const db_request = window.indexedDB.open("1688_2", 2);
-db_request.onsuccess = function (res) {
-    const db = res.target.result;
-    //判断是否存在Users表
-    if (db.objectStoreNames.contains("tfstk")) {
-        //开启事务，允许读写操作
-        const transaction = db.transaction("tfstk", "readwrite");
-        //获取对象存储空间，以便后续的数据操作
-        const store = transaction.objectStore("tfstk");
-        //add函数传入数据，这里userId是主键
-        doFun(store);
-    }
-};
-
-db_request.onupgradeneeded = function (res) {
-    const db = res.target.result;
-    //如果Users表不存在则创建，并插入数据
-    if (!db.objectStoreNames.contains("tfstk")) {
-        db.createObjectStore("tfstk", {keyPath: "index", autoIncrement: true});
-    }
-}
-
-
+}();
